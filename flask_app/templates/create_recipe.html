@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+<!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- CSS -->
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}"> -->
+</head>
+<body>
+    <div class="registration d-flex justify-content-around flex-column m-3">
+        <h2>Add A New Recipe!</h2>
+        <a href="/recipes">back to recipes</a>
+        <a href="/logout"></a>
+    
+    
+        <form action="/create_recipe" method="POST" class="m-3">
+            <label for="name">Name:</label>
+            {% for message in get_flashed_messages(category_filter=['err_name']) %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <input type="text" name="name" class="form-control">
+            <label for="description">Description:</label>
+            {% for message in get_flashed_messages(category_filter=['err_description']) %}
+            <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+            <label for="instructions">Instructions:</label>
+            {% for message in get_flashed_messages(category_filter=['err_instructions']) %}
+            <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control"></textarea>
+            <label for="date">Date:</label>
+            {% for message in get_flashed_messages(category_filter=['err_date']) %}
+            <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <input type="date" name="date" class="m-3">
+            <div>
+                Under 30 min?
+                {% for message in get_flashed_messages(category_filter=['err_under_30_min']) %}
+                <p class="text-danger">{{ message }}</p>
+                {% endfor %}
+                <label for="true" class="m-3">Yes</label>
+                <input type="radio" name="under_30_min" id="true" value="1" class="m-3">
+                <label for="false">No</label>
+                <input type="radio" name="under_30_min" id="false" value="0" class="m-3">
+            </div>
+            <button class="btn btn-primary m-3">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One recipe</title>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}"> -->
+</head>
+
+<body>
+    <div class="all_recipes all_recipes d-flex justify-content-around flex-column m-3">
+        <div class=" all_recipes d-flex justify-content-between m-3">
+            <h2>Welcome {{user.first_name}}</h2>
+            <a href="/recipes">back to recipes</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div>
+            <h3 class="text-center">{{recipe.name}}</h3>
+            <p class="text-secondary">Posted by: {{recipe.author.first_name}}</p>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td>Description:</td>
+                        <td>{{recipe.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Under 30 Minutes:</td>
+                        <td>{% if recipe.under_30_min == 1 %}Yes{%else%}No{%endif%}</td>
+                    </tr>
+                    <tr>
+                        <td>Instructions</td>
+                        <td>{{recipe.instructions}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date Made</td>
+                        <td>{{recipe.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
